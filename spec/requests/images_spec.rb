@@ -34,4 +34,13 @@ RSpec.describe Image, type: :request do
       )
     end
   end
+
+  # test from command line is
+  # $ curl -X POST -d 'images[url]=http://example.com/&image[title]=test' http://localhost:3000/images.json
+  describe 'POST /images.json' do
+    it 'create images' do
+      post '/images.json', image: { url: 'http://example.com', title: 'test' }
+      expect(response.status).to be 201
+    end
+  end
 end
