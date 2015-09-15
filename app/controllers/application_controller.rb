@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  # protect_from_forgery with: :exception # for production
-  protect_from_forgery with: :null_session # for development, test only
+  if Rails.env.production?
+    protect_from_forgery with: :exception
+  else
+    protect_from_forgery with: :null_session
+  end
 end
